@@ -8,14 +8,15 @@ import java.sql.*;
 public class ProductMapper {
 
 
-    public void insert(Product product) throws SQLIntegrityConstraintViolationException {
-        String query = "INSERT INTO clients (name, cvr) VALUES (?, ?)";
+    public void create(Product product) throws SQLIntegrityConstraintViolationException {
+        String query = "INSERT INTO products (name, id, price) VALUES (?, ?, ?)";
         Connection connection = DBManager.getConnection();
 
         try {
             PreparedStatement preparedStatement = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, product.getName());
             preparedStatement.setInt(2, product.getPrice());
+            preparedStatement.setInt(3, product.getId());
             preparedStatement.executeUpdate();
 
             ResultSet resultSet = preparedStatement.getGeneratedKeys();

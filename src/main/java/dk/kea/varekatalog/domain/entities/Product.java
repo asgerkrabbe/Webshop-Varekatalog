@@ -3,6 +3,13 @@ package dk.kea.varekatalog.domain.entities;
 public class Product {
     String name;
     int price;
+    int id;
+
+    public Product(String name, int price, int id) {
+        this.name = name;
+        this.price = price;
+        this.id = id;
+    }
 
     public Product(String name, int price) {
         this.name = name;
@@ -23,5 +30,13 @@ public class Product {
 
     public void setPrice(int price) {
         this.price = price;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
