@@ -15,10 +15,11 @@ public class WebshopController {
     Product product;
     ProductMapper productMapper;
 
-    @PostMapping("/startpage")
-    public String startpage() {
 
-        return "startpage.html";
+
+    @GetMapping("/")
+    public String startpage() {
+        return "index.html";
     }
 
     @GetMapping("/product")
@@ -27,7 +28,7 @@ public class WebshopController {
         return "product.html";
     }
 
-    @PostMapping("/add-product")
+    @GetMapping("/add-product")
     public String addProduct(WebRequest request) throws SQLIntegrityConstraintViolationException {
         String price = request.getParameter("product-price");
         String name = request.getParameter("product-name");
