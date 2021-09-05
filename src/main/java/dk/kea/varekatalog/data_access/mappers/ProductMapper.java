@@ -4,9 +4,11 @@ import dk.kea.varekatalog.data_access.DBManager;
 import dk.kea.varekatalog.domain.entities.Product;
 
 import java.sql.*;
+import java.util.ArrayList;
 
 public class ProductMapper {
 
+    Product product;
 
     public void create(Product product) throws SQLIntegrityConstraintViolationException {
         String query = "INSERT INTO products (name, id, price) VALUES (?, ?, ?)";
@@ -62,6 +64,28 @@ public class ProductMapper {
         }
         return null;
     }
+
+    public ArrayList<Product> findAll() {
+        String query = "SELECT * FROM products";
+        Connection con = DBManager.getConnection();
+        ArrayList<Product> products = new ArrayList<>();
+
+        try {
+            ResultSet resultSet = con.createStatement().executeQuery(query);
+
+            while (resultSet.next()) {
+                String name = resultSet.getString("name");
+                int price = resultSet.getInt("price");
+                int id = resultSet.getInt("id");
+                products.add(new Product(name, price, id));
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+
+        return products;
+    }
+
 
     public void delete(int id) {
         String query = "DELETE FROM products WHERE id = ?";

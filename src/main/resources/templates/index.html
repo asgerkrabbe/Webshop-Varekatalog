@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
-heeeeeeeeeeeeey
+
+<main>
+
+<select name="product" id="product" th:object="${products}">
+    <option>Select product</option>
+    <option th:each="product: ${products}" th:value="${product.getId()}"
+            th:text="${product.getName()}" th:text="${product.getPrice()}">
+    </option>
+</select>
+
+</main>
+
+
+
 </body>
 </html>

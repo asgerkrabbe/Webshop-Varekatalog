@@ -3,12 +3,14 @@ package dk.kea.varekatalog.controller;
 import dk.kea.varekatalog.data_access.mappers.ProductMapper;
 import dk.kea.varekatalog.domain.entities.Product;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.context.request.WebRequest;
 
 import java.sql.SQLIntegrityConstraintViolationException;
+import java.util.ArrayList;
 
 @Controller
 public class WebshopController {
@@ -18,9 +20,15 @@ public class WebshopController {
 
 
     @GetMapping("/")
-    public String startpage() {
+    public String startpage(Model model) {
+        ArrayList<Product> products = productMapper.findAll();
+        model.addAttribute("products", products);
+
+
         return "index.html";
     }
+
+
 
     @GetMapping("/product")
     public String editProduct(@RequestParam("id") int id){
@@ -35,6 +43,6 @@ public class WebshopController {
 
         productMapper.create(new Product(name, Integer.parseInt(price)));
 
-        return "addeproduct.html";
+        return "addproduct.html";
     }
 }
