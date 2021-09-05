@@ -33,6 +33,9 @@ public class WebshopController {
     @GetMapping("/product")
     public String editProduct(@RequestParam("id") int id){
 
+
+
+
         return "product.html";
     }
 
