@@ -8,17 +8,15 @@
 <h1>VELKOMMEN TIL KRABBES ONLINE LAGERHUS</h1>
 <main>
 
+    <select name="product" id="product" th:object="${products}">
+        <option>Select product</option>
+        <option th:each="product: ${products}" th:value="${product.getId()}"
+                th:text="${product.getName()}" th:text="${product.getPrice()}">
+        </option>
+    </select>
 
-<select name="product" id="product" th:object="${products}">
-    <option>Select product</option>
-    <option th:each="product: ${products}" th:value="${product.getId()}"
-            th:text="${product.getName()}" th:text="${product.getPrice()}">
-    </option>
-</select>
+
 
 </main>
-
-
-
 </body>
 </html>

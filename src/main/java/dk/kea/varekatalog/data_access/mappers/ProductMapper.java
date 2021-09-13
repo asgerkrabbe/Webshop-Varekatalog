@@ -70,7 +70,8 @@ public class ProductMapper {
         ArrayList<Product> products = new ArrayList<>();
 
         try {
-            ResultSet resultSet = con.createStatement().executeQuery(query);
+            PreparedStatement preparedStatement = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ResultSet resultSet = preparedStatement.executeQuery(query);
 
             while (resultSet.next()) {
                 String name = resultSet.getString("name");
@@ -81,7 +82,6 @@ public class ProductMapper {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return products;
     }
 
