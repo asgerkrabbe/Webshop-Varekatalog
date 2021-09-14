@@ -14,7 +14,7 @@ import java.util.ArrayList;
 
 @Controller
 public class WebshopController {
-    ProductMapper productMapper;
+    ProductMapper productMapper = new ProductMapper();
 
     @GetMapping("/")
     public String startpage(Model model) {
