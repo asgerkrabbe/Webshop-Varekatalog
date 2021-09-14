@@ -1,9 +1,9 @@
 package dk.kea.varekatalog.domain.entities;
 
 public class Product {
-    String name;
-    int price;
-    int id;
+    private String name;
+    private int price;
+    private int id;
 
     public Product(String name, int price, int id) {
         this.name = name;
