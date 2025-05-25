@@ -7,15 +7,14 @@
 <body>
 
 <main>
-    <form>
+    <form th:action="@{/create-product}" method="post">
         Product name:
         <input type="text" name="product-name">
         <br><br>
         Price:
         <input type="text" name="product-price">
         <br><br>
-        Add product:
-        <input type="submit" name="Add product">
+        <input type="submit" value="Add product">
     </form>
 </main>
 

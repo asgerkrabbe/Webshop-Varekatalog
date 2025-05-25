@@ -30,9 +30,9 @@ public class DBManager {
         try (InputStream input = new ClassPathResource("application.properties").getInputStream()) {
             Properties properties = new Properties();
             properties.load(input);
-            url = properties.getProperty("url");
-            user = properties.getProperty("user");
-            password = properties.getProperty("password");
+            url = properties.getProperty("spring.datasource.url");
+            user = properties.getProperty("spring.datasource.username");
+            password = properties.getProperty("spring.datasource.password");
         } catch (IOException e) {
             e.printStackTrace();
         }

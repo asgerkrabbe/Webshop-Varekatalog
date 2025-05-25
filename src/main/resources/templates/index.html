@@ -10,8 +10,9 @@
 
     <select name="product" id="product" th:object="${products}">
         <option>Select product</option>
-        <option th:each="product: ${products}" th:value="${product.getId()}"
-                th:text="${product.getName()}" th:text="${product.getPrice()}">
+        <option th:each="product : ${products}"
+                th:value="${product.getId()}"
+                th:text="${product.getName()} + ' - ' + ${product.getPrice()}">
         </option>
     </select>
 

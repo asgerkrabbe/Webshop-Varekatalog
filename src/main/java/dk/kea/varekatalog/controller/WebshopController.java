@@ -31,13 +31,17 @@ public class WebshopController {
         return "product.html";
     }
 
-    @GetMapping("/add-product")
-    public String addProduct(WebRequest request) throws SQLIntegrityConstraintViolationException {
-        String price = request.getParameter("product-price");
-        String name = request.getParameter("product-name");
+    @GetMapping("/create-product")
+    public String showCreateProductForm() {
+        return "createproduct.html";
+    }
 
+    @PostMapping("/create-product")
+    public String handleCreateProduct(
+            @RequestParam("product-name") String name,
+            @RequestParam("product-price") String price
+    ) throws SQLIntegrityConstraintViolationException {
         productMapper.create(new Product(name, Integer.parseInt(price)));
-
-        return "addproduct.html";
+        return "redirect:/"; // Redirect to homepage after adding
     }
 }
